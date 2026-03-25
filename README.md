@@ -9,6 +9,12 @@
 
 ---
 
+## 📋 Overview
+
+This project presents a quantitative scoring model to identify high-potential international markets for the EdTech startup "Academy". Starting with 3,665 raw indicators from the World Bank EdStats dataset, a 3-stage filtering pipeline (Business, Data Quality, Statistical) was applied to distill the data into 5 core, independent metrics. These metrics were used to build a weighted composite index, leading to the identification of two primary market profiles: high-volume (e.g., China) and high-quality (e.g., Luxembourg, UK, Iceland, Norway).
+
+---
+
 ## 🎯 The Challenge
 
 **Simulated business case — "Academy"** is a fictional EdTech startup offering online courses for high school and university students. Facing a strategic expansion decision, the data team received the following mandate:
@@ -30,6 +36,8 @@ Retained only indicator categories directly relevant to the EdTech business ques
 - **Infrastructure / Communications** — *Can users actually connect to our platform?*
 - **Health / Population Dynamics** — *Is the target youth market growing?*
 - **Education Expenditures** — *Do societies already invest in education?*
+
+Categories outside this scope — such as primary/early education specifics or highly granular SABER policy indicators — were deliberately excluded to maintain focus on the target market.
 
 ### Stage 2 — Data Quality Filter
 
@@ -164,5 +172,13 @@ Collapsing multi-dimensional country profiles into a single score requires subje
 
 ### 5. Missing Values Without Imputation
 Even after the 3-stage filter, several country-indicator combinations had missing years within the 2013–2017 window. **Solution:** used **temporal aggregation** (mean per country-indicator pair across available years) rather than imputation. Countries with fewer than 2 valid years for a given indicator were flagged but retained, keeping the dataset honest rather than artificially complete.
+
+---
+
+## ⚠️ Limitations
+
+- **Temporal focus:** The analysis is based on 2013–2017 data for completeness reasons. Shifts in internet penetration, demographics, or education policy post-2017 are not captured.
+- **Proxy indicators:** Some metrics are indirect signals (e.g., duration of compulsory education as a proxy for education culture) — valuable but imperfect.
+- **Model simplicity:** The linear weighted model is transparent and reproducible, but does not capture non-linear interactions between indicators.
 
 ---
